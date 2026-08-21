@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PyBot — AI Chat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="grid-backdrop"></div>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&gt;_</span>
+      <div class="brand-text">
+        <span class="brand-name">PyBot</span>
+        <span class="brand-sub">chat.py — Task 1</span>
+      </div>
+    </div>
+
+    <div class="status">
+      <span class="status-dot"></span>
+      <span class="status-label">{{ username }}</span>
+
+      <select id="themeSelect" class="theme-select" title="Chat theme">
+        <option value="teal">Teal</option>
+        <option value="sunset">Sunset</option>
+        <option value="ocean">Ocean</option>
+        <option value="forest">Forest</option>
+      </select>
+
+      <button id="modeToggle" class="ghost-btn" title="Toggle dark mode">🌙</button>
+      <button id="clearBtn" class="ghost-btn" title="Clear conversation">Clear</button>
+      <a href="{{ url_for('logout') }}" class="ghost-btn logout-link" title="Log out">Log out</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">AI Chatbot Web Application</p>
+    <h1>Ask PyBot anything.<br>It replies before your coffee cools.</h1>
+    <p class="hero-copy">A Flask-backed chat interface — try it with a greeting, a joke request, or ask what it can do. Type or use the mic.</p>
+    <div class="chip-row">
+      <button class="chip" data-prompt="Hi there!">👋 Say hi</button>
+      <button class="chip" data-prompt="Tell me a joke">😄 Tell me a joke</button>
+      <button class="chip" data-prompt="What can you do?">🛠️ What can you do?</button>
+      <button class="chip" data-prompt="What's the time?">⏱️ What's the time?</button>
+    </div>
+  </section>
+
+  <main class="chat-panel">
+    <div id="chatWindow" class="chat-window" aria-live="polite">
+      <div class="msg bot">
+        <div class="avatar bot-avatar">&gt;_</div>
+        <div class="bubble">
+          <p>Hello, {{ username }}! I'm PyBot. Ask me something, or tap a suggestion above to get started.</p>
+          <span class="timestamp">system</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="typingRow" class="msg bot typing-row hidden">
+      <div class="avatar bot-avatar">&gt;_</div>
+      <div class="bubble typing-bubble">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+    </div>
+
+    <form id="chatForm" class="composer" autocomplete="off">
+      <span class="prompt-arrow">&gt;</span>
+      <input id="messageInput" type="text" placeholder="Type a message…" maxlength="500" required>
+      <button type="button" id="micBtn" class="icon-btn" title="Voice input">🎤</button>
+      <button type="button" id="speakToggle" class="icon-btn active" title="Toggle spoken replies">🔊</button>
+      <button type="submit" class="send-btn" aria-label="Send message" title="Send">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </main>
+
+  <footer class="foot-note">Built with Flask · Python · SQLite · vanilla JS — Phase 1, Task 1</footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

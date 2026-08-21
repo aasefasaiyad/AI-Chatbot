@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — PyBot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="grid-backdrop"></div>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="brand centered">
+      <span class="brand-mark">&gt;_</span>
+      <div class="brand-text">
+        <span class="brand-name">PyBot</span>
+        <span class="brand-sub">chat.py — Task 1</span>
+      </div>
+    </div>
+
+    <h1 class="auth-title">Welcome back</h1>
+    <p class="auth-sub">Log in to keep your chat history saved.</p>
+
+    {% if error %}
+      <div class="auth-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" class="auth-form">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="e.g. aasefa" required autofocus>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="••••••••" required>
+
+      <button type="submit" class="send-btn full-width">Log in</button>
+    </form>
+
+    <p class="auth-alt">No account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+    <p class="auth-alt"><a href="{{ url_for('guest') }}">Continue as guest →</a></p>
+  </div>
+</div>
+</body>
+</html>
